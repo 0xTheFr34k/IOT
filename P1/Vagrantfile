@@ -1,0 +1,25 @@
+Vagrant.configure("2") do |config|
+  nodes = {
+    "ytayaS"  => { ip: "192.168.56.110", script: "Provision/controller.sh" },
+    "ytayaSW" => { ip: "192.168.56.111", script: "Provision/worker.sh" }
+  }
+
+  config.vm.box = "bento/almalinux-8"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  nodes.each do |name, opts|
+    config.vm.define name do |node|
+      node.vm.hostname = name
+      node.vm.network "private_network", ip: opts[:ip]
+
+      node.vm.provider "virtualbox" do |vb|
+        vb.memory = 1024
+        vb.cpus = 1
+        vb.gui = false
+      end
+
+      node.vm.provision "shell", path: opts[:script]
+    end
+  end
+end
+
