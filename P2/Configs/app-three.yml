@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app3
+  name: app-three
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app3
+      app: app-three
   template:
     metadata:
       labels:
-        app: app3
+        app: app-three
     spec:
       containers:
-      - name: app3
+      - name: app-three
         image: nginx:alpine
         ports:
         - containerPort: 80
@@ -23,12 +23,12 @@ spec:
       volumes:
       - name: html
         configMap:
-          name: app3-html
+          name: app-three-html
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app3-html
+  name: app-three-html
 data:
   index.html: |
     <h1>Welcome to App3!</h1>
@@ -36,10 +36,10 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app3
+  name: app-three
 spec:
   selector:
-    app: app3
+    app: app-three
   ports:
   - protocol: TCP
     port: 80
