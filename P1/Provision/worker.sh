@@ -1,10 +1,7 @@
 #!/bin/bash
-set -e
 
 MASTER_IP=192.168.56.110
 WIP=192.168.56.111
-
-# systemctl disable firewalld --now
 
 ufw disable
 

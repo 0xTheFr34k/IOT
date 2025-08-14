@@ -6,5 +6,7 @@ servers: 1 # same as `--servers 1`
 agents: 1 # same as `--agents 2`
 ports:
   - port: 443:443 # same as `--port '8080:80@loadbalancer'`
+  - port: 8888:8888 # same as `--port '8080:80@loadbalancer'`
+
     nodeFilters:
       - loadbalancer

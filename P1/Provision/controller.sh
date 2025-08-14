@@ -1,9 +1,6 @@
 #!/bin/bash
-set -e
 
 SIP=192.168.56.110
-
-# systemctl disable firewalld --now
 
 ufw disable
 

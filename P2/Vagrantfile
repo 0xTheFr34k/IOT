@@ -1,10 +1,9 @@
 Vagrant.configure("2") do |config|
   nodes = {
     "ytayaS"  => { ip: "192.168.56.110", script: "Provision/controller.sh" },
-    "ytayaSW" => { ip: "192.168.56.111", script: "Provision/worker.sh"}
   }
 
-  config.vm.box = "bento/almalinux-8"
+  config.vm.box = "bento/ubuntu-22.04"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   nodes.each do |name, opts|
