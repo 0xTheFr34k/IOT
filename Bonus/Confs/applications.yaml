@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: git
+  url: https://192.168.56.110/root/ytaya42-inception.git
+  insecure: "true"
+---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
@@ -5,7 +17,7 @@ metadata:
   namespace: argocd
 spec:
   sourceRepos:
-    - https://github.com/0xTheFr34k/ytaya42-inception.git  # allow this repo
+    -  https://192.168.56.110/root/ytaya42-inception.git
   destinations:
   - namespace: '*'
     server: '*'
@@ -21,7 +33,7 @@ metadata:
 spec:
   project: development
   source:
-    repoURL: https://github.com/0xTheFr34k/ytaya42-inception.git
+    repoURL: https://192.168.56.110/root/ytaya42-inception.git
     targetRevision: main
     path: v1
   destination:
